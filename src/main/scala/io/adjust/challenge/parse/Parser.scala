@@ -4,7 +4,7 @@ import cats.effect.{ExitCode, IO, IOApp}
 import fs2.io.file.{Files, Path}
 import io.adjust.challenge.zip._
 import cats.implicits._
-import io.adjust.challenge.domain.HeaderRecord
+import io.adjust.challenge.domain.{DataRecord, HeaderRecord}
 import io.adjust.challenge.domain.Transform.{lsplit, transform}
 object Parser extends IOApp {
 
@@ -21,8 +21,8 @@ object Parser extends IOApp {
           .through(fs2.text.utf8.decode)
           .through(fs2.text.lines)
       }
-      //.evalTap { e => IO.delay(println(e)) }
       .through(transform[IO]((List[String](""), 0)))
+      .filter(list => list.nonEmpty)
       .evalTap { e => IO.delay(println(e)) }
       .compile
       .drain
