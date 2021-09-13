@@ -7,6 +7,9 @@ object Dependencies {
     val fs2 = "3.1.1"
     val scalatest = "3.1.1"
     val typesafe = "1.4.1"
+    val postgres = "42.2.23"
+    val logback = "1.2.5"
+    val logstash = "6.6"
   }
 
   lazy val fs2 = Seq(
@@ -20,6 +23,16 @@ object Dependencies {
 
   lazy val typedconfig = Seq(
     "com.typesafe" % "config" % Versions.typesafe
+  )
+
+  lazy val postgres = Seq(
+    "org.postgresql" % "postgresql" % Versions.postgres
+  )
+
+  lazy val logger = Seq(
+    "ch.qos.logback" % "logback-core" % Versions.logback,
+  "ch.qos.logback" % "logback-classic" % Versions.logback,
+  "net.logstash.logback" % "logstash-logback-encoder" % Versions.logstash
   )
 
 }

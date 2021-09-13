@@ -1,7 +1,8 @@
 import Dependencies._
+import com.typesafe.sbt.packager.docker.Cmd
 
 lazy val commonSettings = Seq(
-  name := "parser",
+  name := "parser-adjust",
   scalaVersion := "2.13.4",
   version := "0.1",
   organization := "io.adjust.challenge",
@@ -29,14 +30,16 @@ resolvers ++= Seq(
 
 
 lazy val parser = (project in file(".")).
-  enablePlugins(JavaServerAppPackaging,
+  enablePlugins(
+    JavaServerAppPackaging,
     AshScriptPlugin,
     DockerPlugin).
   settings(moduleName := "parser").
   settings(mainClass in Compile := Some("io.adjust.challenge.parse.Parser")).
+
   settings(commonSettings: _*).
   settings(
-    libraryDependencies ++= fs2 ++ scalatest ++ typedconfig
+    libraryDependencies ++= fs2 ++ postgres ++ logger
   )
 
 scalafmtOnCompile := true
@@ -44,12 +47,3 @@ scalafmtOnCompile := true
 /* Default the image is built on openjdk11 */
 dockerBaseImage := "adoptopenjdk/openjdk11"
 daemonUser in Docker    := "parser"
-/*
-* Customize this for default window size
-* */
-dockerEnvVars := Map(
-  "TIME_WINDOW_SIZE_SECONDS" -> "120",
-  "TOPIC_QUEUE_SIZE" -> "10",
-  "TRANSACTION_FREQUENCY_TOLERANCE" -> "3",
-  "TRANSACTION_DOUBLED_TOLERANCE" -> "1"
-)

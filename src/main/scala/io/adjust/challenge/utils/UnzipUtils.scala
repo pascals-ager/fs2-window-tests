@@ -1,4 +1,4 @@
-package io.adjust.challenge
+package io.adjust.challenge.utils
 
 import cats.data.OptionT
 import cats.effect._
@@ -11,13 +11,13 @@ import scala.concurrent.{ExecutionContext, ExecutionContextExecutorService}
 import java.io.InputStream
 import java.util.zip._
 
-package object zip {
+object UnzipUtils {
   def unzipP[F[_]](
       chunkSize: Int
-  )(implicit F: Sync[F], con: Async[F]): Pipe[F, Byte, (String, Stream[F, Byte])] = {
+  )(implicit F: Async[F]): Pipe[F, Byte, (String, Stream[F, Byte])] = {
 
     def entry(zis: ZipInputStream): OptionT[F, (String, Stream[F, Byte])] =
-      OptionT(Sync[F].delay(Option(zis.getNextEntry()))).map { ze =>
+      OptionT(Async[F].delay(Option(zis.getNextEntry()))).map { ze =>
         (ze.getName, io.readInputStream[F](F.delay(zis), chunkSize, false))
       }
 
@@ -26,14 +26,13 @@ package object zip {
 
     value: Stream[F, Byte] =>
       value.through(io.toInputStream).flatMap { is: InputStream =>
-        val zis: F[ZipInputStream]          = Sync[F].delay(new ZipInputStream(is))
-        val zres: Stream[F, ZipInputStream] = Stream.bracket(zis)(zis => Sync[F].delay(zis.close()))
+        val zis: F[ZipInputStream]          = Async[F].delay(new ZipInputStream(is))
+        val zres: Stream[F, ZipInputStream] = Stream.bracket(zis)(zis => Async[F].delay(zis.close()))
         zres.flatMap { z => unzipEntries(z) }
       }
   }
   def unzip[F[_]](zipped: Stream[F, Byte], chunkSize: Int)(
-      implicit F: Sync[F],
-      con: Async[F]
+      implicit F: Async[F]
   ): Stream[F, (String, Stream[F, Byte])] =
     zipped.through(unzipP(chunkSize))
 

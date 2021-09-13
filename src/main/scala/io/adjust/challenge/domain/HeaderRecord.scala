@@ -10,7 +10,7 @@ case class HeaderRecord(
     reltime: Int,
     numlev: Int,
     p_src: String,
-    np_src: Int,
+    np_src: String,
     lat: Int,
     long: Int
 )
