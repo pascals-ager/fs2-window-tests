@@ -2,10 +2,10 @@ import Dependencies._
 import com.typesafe.sbt.packager.docker.Cmd
 
 lazy val commonSettings = Seq(
-  name := "parser-adjust",
+  name := "parser-win-stream",
   scalaVersion := "2.13.4",
   version := "0.1",
-  organization := "io.adjust.challenge",
+  organization := "io.win.stream",
   scalacOptions ++= Seq(
     // warnings
     "-unchecked", // able additional warnings where generated code depends on assumptions
@@ -35,7 +35,7 @@ lazy val parser = (project in file(".")).
     AshScriptPlugin,
     DockerPlugin).
   settings(moduleName := "parser").
-  settings(mainClass in Compile := Some("io.adjust.challenge.parse.Parser")).
+  settings(mainClass in Compile := Some("io.win.stream.parse.Parser")).
 
   settings(commonSettings: _*).
   settings(

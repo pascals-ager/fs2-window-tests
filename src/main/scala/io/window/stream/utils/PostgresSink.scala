@@ -23,7 +23,7 @@ object PostgresSink {
 
     val open: F[Connection] = F.delay {
       val ds = new PGSimpleDataSource()
-      ds.setServerNames(Array("postgres-adjust"))
+      ds.setServerNames(Array("postgres-win"))
       ds.setPortNumbers(Array(5432))
       ds.setDatabaseName("postgres")
       ds.setUser("postgres")

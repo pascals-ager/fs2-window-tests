@@ -63,5 +63,5 @@ object NormalizedRecord {
       )
 
   val normalizedInsertSql =
-    "insert into ADJUST_TBL (record, id, year, month, day, hour, reltime, numlev, p_src, np_src, lat, long, lvltypone, lvltyptwo, eltime, press, pflag, gph, zflag, temp, tflag, rh, dpdp, wdir, wspd) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    "insert into WIN_TBL (record, id, year, month, day, hour, reltime, numlev, p_src, np_src, lat, long, lvltypone, lvltyptwo, eltime, press, pflag, gph, zflag, temp, tflag, rh, dpdp, wdir, wspd) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 }

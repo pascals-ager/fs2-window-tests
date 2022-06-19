@@ -15,7 +15,7 @@ object Parser extends IOApp {
   implicit val logger: Logger = LoggerFactory.getLogger(getClass.getName)
   override def run(args: List[String]): IO[ExitCode] = {
     val postgresStream: Stream[IO, Unit] = Files[IO]
-      .walk(Path("/tmp/adjust/data"))
+      .walk(Path("/tmp/win/data"))
       .evalTap(e => IO.delay(println(e)))
       .filter(_.extName == ".zip")
       .flatMap { zippedFile =>
