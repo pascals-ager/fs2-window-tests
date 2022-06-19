@@ -1,4 +1,4 @@
-package io.adjust.challenge.utils
+package io.win.stream.utils
 
 import cats.data.OptionT
 import cats.effect._

@@ -1,7 +1,7 @@
-package io.adjust.challenge.domain
+package io.win.stream.domain
 
 import cats.effect.IO
-import io.adjust.challenge.utils.Transform
+import io.win.stream.utils.Transform
 
 case class NormalizedRecord(
     record: String,

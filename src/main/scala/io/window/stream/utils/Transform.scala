@@ -1,4 +1,4 @@
-package io.adjust.challenge.utils
+package io.win.stream.utils
 
 import cats.effect.Async
 import fs2.{Chunk, Pipe, Pull, Stream}

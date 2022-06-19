@@ -1,11 +1,11 @@
-package io.adjust.challenge.utils
+package io.win.stream.utils
 
 import cats.{ApplicativeError, MonadError, MonadThrow}
 import cats.effect.kernel.Resource.ExitCase
 import cats.effect.{Async, IO, Resource, Sync}
 import fs2.{Chunk, Pull, Stream}
-import io.adjust.challenge.domain.NormalizedRecord
-import io.adjust.challenge.parse.Parser.getClass
+import io.win.stream.domain.NormalizedRecord
+import io.win.stream.parse.Parser.getClass
 import org.postgresql.ds.PGSimpleDataSource
 import org.slf4j.{Logger, LoggerFactory}
 

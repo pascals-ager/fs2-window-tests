@@ -1,4 +1,4 @@
-package io.adjust.challenge.domain
+package io.win.stream.domain
 
 case class DataRecord(
     lvltypone: Int,

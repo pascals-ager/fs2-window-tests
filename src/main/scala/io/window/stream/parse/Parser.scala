@@ -1,14 +1,14 @@
-package io.adjust.challenge.parse
+package io.win.stream.parse
 
 import cats.effect.{ExitCode, IO, IOApp}
 import cats.implicits._
 import fs2.Stream
 import fs2.io.file.{Files, Path}
-import io.adjust.challenge.utils.UnzipUtils._
-import io.adjust.challenge.domain.Normalize._
-import io.adjust.challenge.domain.NormalizedRecord
-import io.adjust.challenge.utils.PostgresSink._
-import io.adjust.challenge.utils.{PostgresSink, Transform}
+import io.win.stream.utils.UnzipUtils._
+import io.win.stream.domain.Normalize._
+import io.win.stream.domain.NormalizedRecord
+import io.win.stream.utils.PostgresSink._
+import io.win.stream.utils.{PostgresSink, Transform}
 import org.slf4j.{Logger, LoggerFactory}
 
 object Parser extends IOApp {
